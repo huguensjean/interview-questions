@@ -60,8 +60,8 @@ class BinTree:
 			self.rightChild.postorder()
 		print(self.getRootVal())
 
-l1 = [20,6,12,13, 1,32,63,27,83,1,78,92,20]
-l2 = [1,28,31,73,18,9,92,20,6,12,13][::-1]
+l1 = list(range(10))
+l2 = l1[::-1]
 tree = BinTree()
 print("ORIGINAL L1", len(l1))
 for i in l1:

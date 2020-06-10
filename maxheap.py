@@ -58,14 +58,27 @@ class MaxHeap:
 			self.perDown(i)
 			i = i-1
 
+
 myheap = MaxHeap()
-l = [5,8,3,9,1,6,7, 67,2, 10, 11, 45, 23, 32, 22, 4, 15, 26]
+l = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+print(l)
 myheap.buildHeap(l)
-print(myheap)
+num1 = num2 = 0
+stop = False
+target = 13
 for i in l:
+	num1 = myheap.heaplist[1]
+	for n in myheap.heaplist[2:]:
+		num2 = n
+		if num1 + num2 == target:
+			stop = True
+			break
+	if stop:
+		break
+
 	myheap.delMax()
-	print(myheap)
-for i in l:
-	myheap.insert(i)
-print(myheap)
+
+print(num1, num2)
+
+
 

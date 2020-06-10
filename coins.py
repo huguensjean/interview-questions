@@ -22,7 +22,7 @@ def getOptimalChange(amount, change_list):
 
 def main():
 	amount = 54639
-	change_list = [1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000]
+	change_list = sorted([1, 5, 10, 25, 100, 200, 500, 1000, 2000, 5000, 10000])
 	change_name = ["cent", "nickel", "dime", "quarter", "one", "two", "five", "ten", "twenty", "fifty", "hundred"]
 	currency_title = {change_list[i]:change_name[i] for i in range(len(change_list))}
 	currency_count, currency_list = getOptimalChange(amount, change_list)
