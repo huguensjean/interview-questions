@@ -39,6 +39,34 @@ class BinTree:
 			t.rightChild = self.rightChild
 			self.rightChild = t
 
+	def spinLeaves(self):
+
+		if self.leftChild and self.rightChild:
+			if self.rightChild.getRootVal() != 'X' or  self.leftChild.getRootVal() != 'X':
+				tval = self.rightChild.getRootVal()
+				self.rightChild.setRootVal(self.leftChild.getRootVal())
+				self.leftChild.setRootVal(tval)
+
+		if self.leftChild and not self.rightChild:
+			self.rightChild = self.leftChild
+			self.leftChild = BinTree('X')
+
+		if self.rightChild and not self.leftChild:
+			self.leftChild = self.rightChild
+			self.rightChild = BinTree('X')
+
+		if self.leftChild:
+			self.leftChild.spinLeaves()
+		if self.rightChild:
+			self.rightChild.spinLeaves()
+
+		if self.leftChild:
+			if self.leftChild.getRootVal() == 'X':
+				self.leftChild = None
+		if self.rightChild:
+			if self.rightChild.getRootVal() == 'X':
+				self.rightChild = None
+
 	def preorder(self, visited=[]):
 		if self.getRootVal() != 'root':
 			visited.append(self.getRootVal())
@@ -89,11 +117,16 @@ T2: T1 Reflective
     6   5   4   3
 
 """
+import random
+
 th = 2
 c = th + 1
 num_items = 2**(c) - 1
 rv1 = list(range(num_items))
 rv2 = list(range(num_items))
+
+#random.shuffle(rv1)
+#random.shuffle(rv2)
 
 tree1 = BinTree(rv1[0])
 tree2 = BinTree(rv2[0])
@@ -120,6 +153,7 @@ for i, item in enumerate(rv1[1:]):
 			exec("tree1.%s = BinTree(%d)"%(root, rv1[value_index_counter]))
 			value_index_counter += 1
 		stack.extend(next_roots)
+
 
 print("\nMIRROR TREE T2:\n")
 value_index_counter = 1
@@ -158,4 +192,5 @@ if t2_post[::-1] == t1_pre:
 	print("\nMIRROR: TRUE")
 else:
 	print("\nMIRROR: FALSE")
+print("\nNUMBER OF NODES: %d"%num_items)
 
