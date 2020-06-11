@@ -114,6 +114,7 @@ class Graph:
 			return None
 
 graph1 = Graph()
+print("\nAdding edges...")
 graph1.addEdge(0,1,5)
 graph1.addEdge(0,5,2)
 graph1.addEdge(1,2,4)
@@ -123,79 +124,22 @@ graph1.addEdge(3,5,3)
 graph1.addEdge(4,0,1)
 graph1.addEdge(5,4,8)
 graph1.addEdge(5,2,1)
+print("\nGraph node connections: ")
 for v in graph1.getVertices():
 	print(graph1.vertDict[v])
+print("\nDFS: ")
 print(graph1.dfs(0))
-print(graph1.bfs(0))
+print("\nDFS, recursive: ")
 print(graph1.dfsr(0))
+print("\nBFS: ")
 print(graph1.bfs(5))
-print(graph1.dfsr(5))
+print("\nDFS paths: ")
 print(list(graph1.dfs_paths(0, 5)))
+print("\nBFS paths: ")
 print(list(graph1.bfs_paths(0, 5)))
+print("\nDFS paths, recursive: ")
 print(list(graph1.dfsr_paths(0, 5)))
+print("\nBFS Shortest path: ")
 print(graph1.shortest_path(0, 5))
 
-
-graph_map = Graph()
-graph_2d =[[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 
-	   [1, 1, 0, 0, 0, 0, 0, 0, 0, 1], 
-	   [1, 0, 1, 0, 0, 0, 0, 0, 1, 1], 
-	   [1, 0, 0, 1, 0, 0, 0, 1, 0, 1], 
-	   [1, 0, 0, 0, 1, 0, 1, 0, 0, 1], 
-	   [1, 0, 0, 0, 0, 1, 0, 0, 0, 1], 
-	   [1, 0, 0, 0, 1, 0, 1, 0, 0, 1], 
-	   [1, 0, 0, 1, 0, 0, 0, 1, 0, 1], 
-	   [1, 0, 1, 0, 0, 0, 0, 0, 1, 1], 
-	   [1, 1, 0, 0, 0, 0, 0, 0, 0, 1], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
-
-index = 0
-w, h = len(graph_2d[0]), len(graph_2d)
-
-
-def addEdges(w, h, i, j, graph_2d, graph_map):
-	i_min = max(0, i-1)
-	i_max = min(w-1, i+1)
-	j_min = max(0, j-1)
-	j_max = min(w-1, j+1)
-	nbrs = [(i_min, j_min), (i_min, j), (i_min, j_max),(i, j_min), (i,j_max), (i_max, j_max), (i_max, j), (i_max, j_min)]
-	for n in nbrs:
-		if graph_2d[n[0]][n[1]]:
-			graph_map.addEdge((i, j), (n[0], n[1]))
-	return graph_map
-
-
-for i, r in enumerate(graph_2d):
-	for j, c in enumerate(r):
-		if graph_2d[i][j]==1:
-			graph_map.addVertex((i,j))
-			graph_map = addEdges(w, h, i, j, graph_2d, graph_map)
-
-for v in graph_map.getVertices():
-	print(graph_map.vertDict[v])
-
-islands = []
-isSub = False
-for v in graph_map.getVertices():
-	p = graph_map.dfs(v)
-	if p not in islands:
-		for i in islands:
-			if i.issubset(p):
-				isSub=True
-		if not isSub:
-			islands.append(p)
-		isSub=False
-
-print(len(islands))
-
-
-
-
-
-
-
-
-
-
-	
 

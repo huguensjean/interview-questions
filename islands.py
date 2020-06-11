@@ -113,41 +113,26 @@ class Graph:
 		except StopIteration:
 			return None
 
-graph1 = Graph()
-graph1.addEdge(0,1,5)
-graph1.addEdge(0,5,2)
-graph1.addEdge(1,2,4)
-graph1.addEdge(2,3,9)
-graph1.addEdge(3,4,7)
-graph1.addEdge(3,5,3)
-graph1.addEdge(4,0,1)
-graph1.addEdge(5,4,8)
-graph1.addEdge(5,2,1)
-for v in graph1.getVertices():
-	print(graph1.vertDict[v])
-print(graph1.dfs(0))
-print(graph1.bfs(0))
-print(graph1.dfsr(0))
-print(graph1.bfs(5))
-print(graph1.dfsr(5))
-print(list(graph1.dfs_paths(0, 5)))
-print(list(graph1.bfs_paths(0, 5)))
-print(list(graph1.dfsr_paths(0, 5)))
-print(graph1.shortest_path(0, 5))
 
-
+print("\nCount number of islands in a binary image.")
 graph_map = Graph()
-graph_2d =[[1, 1, 1, 1, 1, 1, 0, 0, 0, 1], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 1, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+print("\nInput map:")
+graph_2d =[[1, 1, 1, 1, 0, 1, 1, 1, 0, 1], 
+	   [1, 1, 0, 0, 0, 0, 0, 0, 0, 1], 
+	   [1, 0, 1, 0, 0, 0, 0, 0, 1, 1], 
+	   [1, 0, 0, 1, 0, 0, 0, 1, 0, 1], 
+	   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1], 
+	   [1, 0, 0, 0, 0, 1, 0, 0, 0, 1], 
+	   [1, 0, 0, 0, 0, 0, 1, 0, 0, 0], 
+	   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1], 
+	   [1, 0, 0, 0, 0, 1, 0, 0, 0, 1], 
+	   [1, 0, 0, 0, 0, 0, 1, 0, 0, 1], 
+	   [1, 0, 0, 1, 0, 0, 0, 1, 0, 1], 
+	   [1, 0, 1, 0, 0, 0, 0, 0, 1, 1], 
+	   [1, 1, 0, 0, 0, 1, 0, 0, 0, 1], 
 	   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+for r in graph_2d:
+	print(r)
 
 index = 0
 w, h = len(graph_2d[0]), len(graph_2d)
@@ -171,13 +156,14 @@ for i, r in enumerate(graph_2d):
 			graph_map.addVertex((i,j))
 			graph_map = addEdges(w, h, i, j, graph_2d, graph_map)
 
+print("\nGraph node connections: ")
 for v in graph_map.getVertices():
 	print(graph_map.vertDict[v])
 
 islands = []
 isSub = False
 for v in graph_map.getVertices():
-	p = graph_map.dfs(v)
+	p = graph_map.dfsr(v)
 	if p not in islands:
 		for i in islands:
 			if i.issubset(p):
@@ -186,15 +172,8 @@ for v in graph_map.getVertices():
 			islands.append(p)
 		isSub=False
 
+print("\nNumber of islands: ")
 print(len(islands))
-
-
-
-
-
-
-
-
 
 
 	

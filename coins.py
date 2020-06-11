@@ -39,9 +39,10 @@ def main():
 			continue
 	dollars = amount // 100
 	cents = amount % 100
-	print("Input Amount: $%d.%d"%(dollars, cents))
+	print("\nInput Amount: $%d.%d"%(dollars, cents))
 	change_str = change_str[2:]
 	change_str = change_str.lstrip()
-	print("Change: %d pieces: "%total_items, change_str.lstrip())
+	print("\nChange: %d pieces\n"%total_items)
+	print(change_str.lstrip())
 
-print("execution time:", timeit.timeit(main, number=1))
+print("\nexecution time:", timeit.timeit(main, number=1))

@@ -86,7 +86,6 @@ class OrderedList:
 		else:
 			previous.setNext(current.getNext())
 
-
 def getRandomList():
 	randomlist = []
 	for i in range(0, 16):
@@ -120,14 +119,10 @@ def mergeSortList(listNum, temp_list=[], ordered_list=OrderedList()):
 def main():
 
 	listNum = getRandomList()
-	print("Original list: \n", listNum)
-	print(len(listNum))
-	#print()
-	#print("Python Sorted list: \n", sorted(listNum))
-	print()
-	sortedList = mergeSortList(listNum)
-	print("Sorted list:\n")
-	print(sortedList)
-	print(sortedList.count())
+	print("Original list:")
+	print(listNum)
+	sortedList = sortList(listNum)
+	print("\nSorted list:")
+	print(list([int(i) for i in str(sortedList).split(' ')]))
 
 print("execution time:", timeit.timeit(main, number=1))

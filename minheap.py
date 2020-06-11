@@ -60,19 +60,31 @@ class MinHeap:
 
 myheap = MinHeap()
 l = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+print("\nOriginal list:")
 print(l)
 myheap.buildHeap(l)
+
+print("\nHeapsort Min")
+myheap2 = MinHeap()
+myheap2.buildHeap(l)
+for i in range(myheap2.currentSize):
+	print(myheap2.delMin())
+
+print("\nGet all pairs in the list that add to 20")
 num1 = num2 = 0
-target = 23
+target = 20
+print("\nTarget sum: ", target)
 sum_tuple_list = []
 for i in l:
 	num1 = myheap.heaplist[1]
 	for n in myheap.heaplist[2:]:
 		num2 = n
 		if num1 + num2 == target:
-			sum_tuple_list.append((num1, num2))
+			pair = sorted((num1, num2))
+			if pair not in sum_tuple_list:
+				sum_tuple_list.append(tuple(pair))
 	myheap.delMin()
-
+print("\nInteger pairs:")
 print(sum_tuple_list)
 
 

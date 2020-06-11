@@ -166,5 +166,8 @@ class LinkedList:
 
 l1 = LinkedList()
 front, back = l1.fibonacci(100)
+print("\nFIBONACCI SERIES:")
+print("\nFrontward: ")
 print(front)
+print("\nBackward: ")
 print(back)
