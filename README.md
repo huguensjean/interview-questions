@@ -1,5 +1,4 @@
-# refactored-sniffle
-Interview Questions
+# Interview Questions
 
 1. twosums.py:
 Find the indices of the first two numbers that add to a target sum.
