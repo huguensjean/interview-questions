@@ -37,6 +37,13 @@ T2: T1 Reflective
       2       1
      / \     / \
     6   5   4   3
+
+          0
+        /   \
+       /     \
+      2       1
+     / \     / \
+    6   5   4   3
     
 8.  trie.py:
 Count the number of words with a given prefix.
