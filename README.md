@@ -7,16 +7,16 @@ Find the indices of the first two numbers that add to a target sum.
 Print list frontward and backward.
 
 ### 3. fibonacci.py:
-Lucas and fibonacci series
+Lucas and fibonacci series.
 
 ### 4. minheap.py & maxheap.py:
-Get all pairs in the list that add to a sum
+Get all pairs in the list that add to a sum.
 
 ### 5. coins.py:
 Given some amount of money in a certain currency, please give me the change.
 
 ### 6. sorting.py:
-Mergesort a list
+Mergesort a list.
 
 ### 7. tree.py
 
@@ -46,4 +46,4 @@ Count the number of words with a given prefix.
 Count the number of islands in a binary image.
 
 ### 10. graph.py:
-DFS, BFS, DFS recursive, BFS recursive, shortest path
+DFS, BFS, DFS recursive, BFS recursive, shortest path.
