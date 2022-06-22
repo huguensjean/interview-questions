@@ -20,23 +20,15 @@ Given some amount of money in a certain currency, please give me the change.
 Mergesort a list
 
 7. tree.py
+
 T1:
-
-      0
-    /   \
-   /     \
-  2       1
- / \     / \
-6   5   4   3
-
-T2: T1 Reflective
 
           0
         /   \
        /     \
-      2       1
+      1       2
      / \     / \
-    6   5   4   3
+    3   4   5   6
 
 
 T2: T1 Reflective
