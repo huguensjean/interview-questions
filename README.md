@@ -21,6 +21,7 @@ Mergesort a list
 
 7. tree.py
 T1:
+
           0
         /   \
        /     \
@@ -29,6 +30,7 @@ T1:
     3   4   5   6
 
 T2: T1 Reflective
+
           0
         /   \
        /     \
