@@ -22,13 +22,12 @@ Mergesort a list
 7. tree.py
 T1:
 
-
-          0
-        /   \
-       /     \
-      1       2
-     / \     / \
-    3   4   5   6
+      0
+    /   \
+   /     \
+  2       1
+ / \     / \
+6   5   4   3
 
 T2: T1 Reflective
 
