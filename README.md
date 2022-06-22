@@ -38,6 +38,9 @@ T2: T1 Reflective
      / \     / \
     6   5   4   3
 
+
+T2: T1 Reflective
+
           0
         /   \
        /     \
