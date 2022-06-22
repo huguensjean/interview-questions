@@ -39,6 +39,8 @@ T2: T1 Reflective
      / \     / \
     6   5   4   3
     
+Reflective: If you place T2 on the left or right side of T1, it should close like a book.
+
 ### 8.  trie.py:
 Count the number of words with a given prefix.
 
