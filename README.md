@@ -18,7 +18,8 @@ Given some amount of money in a certain currency, please give me the change.
 ### 6. sorting.py:
 Mergesort a list.
 
-### 7. tree.py
+### 7. tree.py:
+Show that two trees are reflective.
 
 T1:
 
