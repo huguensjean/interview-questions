@@ -2,127 +2,119 @@ import timeit
 import random
 
 class Node:
-	def __init__(self, item):
-		self.data = item
-		self.next = None
-	def getData(self):
-		return self.data
-	def __str__(self):
-		return str(self.data)
-	def getNext(self):
-		return self.next
-	def setData(self, item):
-		self.data = item
-	def setNext(self, node):
-		self.next = node
+    def __init__(self, item):
+        self.data = item
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def __str__(self):
+        return str(self.data)
+
+    def getNext(self):
+        return self.next
+
+    def setData(self, item):
+        self.data = item
+
+    def setNext(self, node):
+        self.next = node
 
 
 class OrderedList:
-	def __init__(self):
-		self.head = None
-	def isEmpty(self):
-		return self.head == None
+    def __init__(self):
+        self.head = None
 
-	def __str__(self):
-		current = self.head
-		startStr = ''
-		while current is not None:
-			startStr += ' '+str(current.getData())
-			current = current.getNext()
-		return startStr.lstrip()
+    def isEmpty(self):
+        return self.head is None
 
-	def count(self):
-		current = self.head
-		count = 0
-		while current is not None:
-			count = count + 1
-			current = current.getNext()
-		return count
+    def __str__(self):
+        current = self.head
+        elements = []
+        while current is not None:
+            elements.append(str(current.getData()))
+            current = current.getNext()
+        return ' '.join(elements)
 
-	def search(self, item):
-		current = self.head
-		found = False
-		stop = False
-		while current is not None and not found and not stop:
-			if current.getData() == item:
-				found = True
-			else:
-				if current.getData() > item:
-					stop = True
-				else:
-					current = current.getNext()
-		return found
-	def add(self, item):
-		current = self.head
-		previous = None
-		stop = False
-		while current is not None and not stop:
-			if current.getData() > item:
-				stop = True
-			else:
-				previous = current
-				current = current.getNext()
-		temp = Node(item)
-		if previous is None:
-			temp.setNext(self.head)
-			self.head = temp
-		else:
-			temp.setNext(current)
-			previous.setNext(temp)
+    def count(self):
+        current = self.head
+        count = 0
+        while current is not None:
+            count += 1
+            current = current.getNext()
+        return count
 
-	def remove(self, item):
-		current = self.head
-		previous = None
-		found = False
-		while current is not None and not found:
-			if current.getData() == item:
-				found = True
-			else:
-				previous = current
-				current = current.getNext()
+    def search(self, item):
+        current = self.head
+        while current is not None:
+            if current.getData() == item:
+                return True
+            # Since the list is ordered, stop if the current data exceeds the item
+            if current.getData() > item:
+                return False
+            current = current.getNext()
+        return False
 
-		if previous is None:
-			self.head = current.getNext()
-		else:
-			previous.setNext(current.getNext())
+    def add(self, item):
+        current = self.head
+        previous = None
+        # Find the position to insert the new item
+        while current is not None and current.getData() <= item:
+            previous = current
+            current = current.getNext()
 
-def getRandomList():
-	randomlist = []
-	for i in range(0, 16):
-		n = random.randint(1, 20)
-		randomlist.append(n)
-	return randomlist
+        new_node = Node(item)
+        if previous is None:
+            # Insert at the head
+            new_node.setNext(self.head)
+            self.head = new_node
+        else:
+            # Insert after previous
+            new_node.setNext(current)
+            previous.setNext(new_node)
 
-def sortList(listNum, ordered_list=OrderedList()):
-	pos = 0
-	if len(listNum) == 1:
-		ordered_list.add(listNum[0])
-		return ordered_list
-	else:
-		ordered_list.add(listNum[0])
-		return sortList(listNum[1:], ordered_list)
+    def remove(self, item):
+        current = self.head
+        previous = None
+        found = False
+
+        while current is not None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if not found:
+            # Item not found, do nothing or raise an error
+            return
+
+        if previous is None:
+            # Removing the head
+            self.head = current.getNext()
+        else:
+            # Removing from the middle or end
+            previous.setNext(current.getNext())
 
 
-def mergeSortList(listNum, temp_list=[], ordered_list=OrderedList()):
-	if len(temp_list) == 0 and len(listNum) > 0:
-		midpoint = len(listNum)//2
-		temp_list = listNum[midpoint:]
-		listNum = listNum[:midpoint]
-	if len(listNum) == 0:
-		return ordered_list
-	else:
-		ordered_list.add(listNum[0])
-		if len(temp_list):
-			ordered_list.add(temp_list[0])
-		return mergeSortList(listNum[1:], temp_list[1:], ordered_list)
+def getRandomList(size=16, start=1, end=20):
+    return [random.randint(start, end) for _ in range(size)]
+
+def sortList(listNum):
+    ordered_list = OrderedList()
+    for item in listNum:
+        ordered_list.add(item)
+    return ordered_list
 
 def main():
+    listNum = getRandomList()
+    print("Original list:")
+    print(listNum)
 
-	listNum = getRandomList()
-	print("Original list:")
-	print(listNum)
-	sortedList = sortList(listNum)
-	print("\nSorted list:")
-	print(list([int(i) for i in str(sortedList).split(' ')]))
+    sortedList = sortList(listNum)
+    print("\nSorted list:")
+    # The OrderedList __str__ method returns space-separated values
+    print(sortedList)
 
-print("execution time:", timeit.timeit(main, number=1))
+print("Execution time:", timeit.timeit(main, number=1))
